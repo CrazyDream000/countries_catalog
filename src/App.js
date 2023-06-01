@@ -9,7 +9,7 @@ import Landing from './pages/Landing';
 
 function App() {
   return (
-    <div className="App bg-slate-200">
+    <div className="w-[100vw] h-[100vh] bg-slate-200">
       <Router>
         <Nav></Nav>
         <Routes>

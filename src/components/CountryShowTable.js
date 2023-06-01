@@ -44,11 +44,26 @@ function CountryShowTable(props) {
             </tbody>
         </table>);
     let mobileListContent = (
-        <div className="py-3 grid grid-cols-3">
-            <div className="col-span-1">2</div>
-            <div className="col-span-1">Canada</div>
-            <div className="col-span-1"> +1 </div>
-        </div>
+        <ul class="w-full divide-y divide-gray-200 dark:divide-gray-700 p-4">
+            <li class="pb-3 sm:pb-4">
+                <div class="flex items-center space-x-4">
+                    <div class="flex-shrink-0">
+                        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image"/>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                        Neil Sims
+                        </p>
+                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                        email@flowbite.com
+                        </p>
+                    </div>
+                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                        $320
+                    </div>
+                </div>
+            </li>
+        </ul>
     );
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -65,9 +80,7 @@ function CountryShowTable(props) {
             <div className="hidden md:block">
                 {pcListContent}
             </div>
-            <div className="block md:hidden">
-                {mobileListContent}
-            </div>
+            <div className="block md:hidden bg-white">{mobileListContent}</div>
         </div>
     );
   }
