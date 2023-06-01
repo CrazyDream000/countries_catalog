@@ -1,0 +1,214 @@
+{
+    "altSpellings": [
+        "KP",
+        "Democratic People's Republic of Korea",
+        "DPRK",
+        "조선민주주의인민공화국",
+        "Chosŏn Minjujuŭi Inmin Konghwaguk",
+        "Korea, Democratic People's Republic of",
+        "북한",
+        "북조선"
+    ],
+    "area": 120538.0,
+    "borders": [
+        "CHN",
+        "KOR",
+        "RUS"
+    ],
+    "capital": [
+        "Pyongyang"
+    ],
+    "capitalInfo": {
+        "latlng": [
+            39.02,
+            125.75
+        ]
+    },
+    "car": {
+        "side": "right",
+        "signs": [
+            ""
+        ]
+    },
+    "cca2": "KP",
+    "cca3": "PRK",
+    "ccn3": "408",
+    "cioc": "PRK",
+    "coatOfArms": {
+        "png": "https://mainfacts.com/media/images/coats_of_arms/kp.png",
+        "svg": "https://mainfacts.com/media/images/coats_of_arms/kp.svg"
+    },
+    "continents": [
+        "Asia"
+    ],
+    "currencies": {
+        "KPW": {
+            "name": "North Korean won",
+            "symbol": "₩"
+        }
+    },
+    "demonyms": {
+        "eng": {
+            "f": "North Korean",
+            "m": "North Korean"
+        },
+        "fra": {
+            "f": "Nord-coréenne",
+            "m": "Nord-coréen"
+        }
+    },
+    "fifa": "PRK",
+    "flag": "\uD83C\uDDF0\uD83C\uDDF5",
+    "flags": {
+        "alt": "The flag of North Korea is composed of three horizontal bands — a large central white-edged red band, and a blue band above and beneath the red band. On the hoist side of the red band is a red five-pointed star within a white circle.",
+        "png": "https://flagcdn.com/w320/kp.png",
+        "svg": "https://flagcdn.com/kp.svg"
+    },
+    "idd": {
+        "root": "+8",
+        "suffixes": [
+            "50"
+        ]
+    },
+    "independent": true,
+    "landlocked": false,
+    "languages": {
+        "kor": "Korean"
+    },
+    "latlng": [
+        40.0,
+        127.0
+    ],
+    "maps": {
+        "googleMaps": "https://goo.gl/maps/9q5T2DMeH5JL7Tky6",
+        "openStreetMaps": "https://www.openstreetmap.org/relation/192734"
+    },
+    "name": {
+        "common": "North Korea",
+        "nativeName": {
+            "kor": {
+                "common": "조선",
+                "official": "조선민주주의인민공화국"
+            }
+        },
+        "official": "Democratic People's Republic of Korea"
+    },
+    "population": 25778815,
+    "postalCode": {
+        "format": "###-###",
+        "regex": "^(\\d{6})$"
+    },
+    "region": "Asia",
+    "startOfWeek": "monday",
+    "status": "officially-assigned",
+    "subregion": "Eastern Asia",
+    "timezones": [
+        "UTC+09:00"
+    ],
+    "tld": [
+        ".kp"
+    ],
+    "translations": {
+        "ara": {
+            "common": "كوريا الشمالية",
+            "official": "جمهورية كوريا الديمقراطية الشعبية"
+        },
+        "bre": {
+            "common": "Korea an Norzh",
+            "official": "Republik Poblel ha Demokratel Korea"
+        },
+        "ces": {
+            "common": "Severní Korea",
+            "official": "Korejská lidově demokratická republika"
+        },
+        "cym": {
+            "common": "North Korea",
+            "official": "Democratic People's Republic of Korea"
+        },
+        "deu": {
+            "common": "Nordkorea",
+            "official": "Demokratische Volksrepublik Korea"
+        },
+        "est": {
+            "common": "Põhja-Korea",
+            "official": "Korea Rahvademokraatlik Vabariik"
+        },
+        "fin": {
+            "common": "Pohjois-Korea",
+            "official": "Korean demokraattinen kansantasavalta"
+        },
+        "fra": {
+            "common": "Corée du Nord",
+            "official": "République populaire démocratique de Corée"
+        },
+        "hrv": {
+            "common": "Sjeverna Koreja",
+            "official": "Demokratska Narodna Republika Koreja"
+        },
+        "hun": {
+            "common": "Észak-Korea",
+            "official": "Koreai Népi Demokratikus Köztársaság"
+        },
+        "ita": {
+            "common": "Corea del Nord",
+            "official": "Repubblica democratica popolare di Corea"
+        },
+        "jpn": {
+            "common": "朝鮮民主主義人民共和国",
+            "official": "朝鮮民主主義人民共和国"
+        },
+        "kor": {
+            "common": "조선",
+            "official": "조선민주주의인민공화국"
+        },
+        "nld": {
+            "common": "Noord-Korea",
+            "official": "Democratische Volksrepubliek Korea"
+        },
+        "per": {
+            "common": "کُره شمالی",
+            "official": "جمهوری دموکراتیک خلق کره"
+        },
+        "pol": {
+            "common": "Korea Północna",
+            "official": "Koreańska Republika Ludowo-Demokratyczna"
+        },
+        "por": {
+            "common": "Coreia do Norte",
+            "official": "República Popular Democrática da Coreia"
+        },
+        "rus": {
+            "common": "Северная Корея",
+            "official": "Корейская Народно-Демократическая Республика Корея"
+        },
+        "slk": {
+            "common": "Severná Kórea",
+            "official": "Kórejská ľudovodemokratická republika"
+        },
+        "spa": {
+            "common": "Corea del Norte",
+            "official": "República Popular Democrática de Corea"
+        },
+        "srp": {
+            "common": "Северна Кореја",
+            "official": "Демократска Народна Република Кореја"
+        },
+        "swe": {
+            "common": "Nordkorea",
+            "official": "Demokratiska Folkrepubliken Korea"
+        },
+        "tur": {
+            "common": "Kuzey Kore",
+            "official": "Kore Demokratik Halk Cumhuriyeti"
+        },
+        "urd": {
+            "common": "شمالی کوریا",
+            "official": "جمہوری عوامی جمہوریہ کوریا"
+        },
+        "zho": {
+            "common": "朝鲜",
+            "official": "朝鲜人民民主共和国"
+        }
+    },
+    "unMember": true
+}
