@@ -4,7 +4,7 @@ import CountryShowTable from "../components/CountryShowTable";
 
 function CountriesLists() {
     return (
-      <div className="p-0 md:p-10">
+      <div className="pt-12 w-full h-full relative ">
          <CountryShowTable></CountryShowTable>
       </div>
     );
