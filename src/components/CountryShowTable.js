@@ -2,17 +2,18 @@ import { useState, useEffect } from "react";
 import { PulseLoader } from "react-spinners";
 import axios from 'axios';
 import Fuse from 'fuse.js'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 
 function CountryShowTable(props) {
     const [isLoading, setIsLoading] = useState(false);
-    const [countriesData, setCountriesData] = useState(undefined);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [countriesData, setCountriesData] = useState(undefined); //displaying countriesdata
+    const [curPage, setCurPage] = useState(1);
     const [filterTxt, setFilterTxt] = useState("");
     const [searchData, setSearchData] = useState("");
    
 
     useEffect(() => {
-        //countries data
+        //initially loading countries data
         getCountriesData();
         return () => {
           // This code will be executed just before unmounting the component, similar to componentWillUnmount
@@ -25,6 +26,7 @@ function CountryShowTable(props) {
             `https://restcountries.com/v3.1/all`
         );
         
+        //Sort countries data by name
         result.data.sort((a, b) => {
             if ( a.name.common < b.name.common ){
                 return -1;
@@ -35,8 +37,9 @@ function CountryShowTable(props) {
             return 0;
         });
         
+        //set up fuse module for search the countries by Name
         const fuse =  new Fuse(result.data, {minMatchCharLength:0, keys:["name.common"]});
-        console.log(fuse);
+        //diplay all countries data at first
         setCountriesData(result.data);
         setSearchData(fuse);
         setIsLoading(false);
@@ -56,27 +59,31 @@ function CountryShowTable(props) {
     let mobileListContent = [];
     if(countriesData != undefined && countriesData.length != 0)
     {
-        console.log(countriesData)
-        let count = (countriesData.length < 25)?countriesData.length:25;
-        for ( var i = (currentPage - 1) * 25 ; i < count ; i ++ ){
-            //get country code
+        let indexOfLastRecord = countriesData.length < curPage * 25 ? countriesData.length : curPage * 25;
+        let indexOfFirstRecord = (curPage - 1) * 25;
+
+        const currentRecords = countriesData.slice(indexOfFirstRecord, indexOfLastRecord);
+        currentRecords.map((index) =>{
             let countryCode = "";
             let countryItem = {};
+            //set Item
             if(filterTxt == "")
-                countryItem = countriesData[i];
+                countryItem = index;
             else
-                countryItem = countriesData[i].item;
+                countryItem = index.item;
+
+            //get country code
             if(countryItem.idd.suffixes != undefined)
-                countryItem.idd.suffixes.map((item)=>{
-                    countryCode += countryItem.idd.root + item;  
-                });
+                countryCode = countryItem.idd.root + countryItem.idd.suffixes[0];
             else if(countryItem.idd.root != undefined)
-                countryCode = "+ " + countryItem.idd.root;
+                countryCode = countryItem.idd.root;
             //to get Native Name
             let officialData = [];
             for (let key in countryItem.name.nativeName) {
                 officialData = (countryItem.name.nativeName[key]["common"]);
             }
+
+            //display countries Data on PC
             pcListContent = [...pcListContent, (
                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600  cursor-pointer">
                     <td className="p-4 w-18">
@@ -92,16 +99,13 @@ function CountryShowTable(props) {
                     <td className="px-3 py-4">
                         {countryItem.name.official}
                     </td>
-                    <td className="px-3 py-4 flex">
-                        {
-                            countryCode
-                        }
+                    <td className="px-3 py-4 w-20 flex overflow-hidden whitespace-nowrap text-ellipsis">
+                        {countryCode}
                     </td>
                 </tr>
             )];
-
+            //display countries Data on Mobile
             mobileListContent =[...mobileListContent, (
-        
                 <li className="pb-3 sm:pb-4 transition delay-[40] hover:bg-gray-50 cursor-pointer">
                     <div className="flex items-center space-x-6">
                         <div className="flex-shrink-0">
@@ -116,9 +120,8 @@ function CountryShowTable(props) {
                         </div>
                     </div>
                 </li>
-       
             )];
-        }
+        });
     }
     
     return (
@@ -166,19 +169,78 @@ function CountryShowTable(props) {
                         {mobileListContent}
                     </ul>
                 </div>
-
+                <div className="flex justify-center items-center w-full border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+                    <div className="flex items-center justify-between">
+                        <div>
+                        <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                            <a
+                            href="#"
+                            className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                            >
+                            <span className="sr-only">Previous</span>
+                            <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
+                            </a>
+                            {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
+                            <a
+                            href="#"
+                            aria-current="page"
+                            className="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                            1
+                            </a>
+                            <a
+                            href="#"
+                            className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                            >
+                            2
+                            </a>
+                            <a
+                            href="#"
+                            className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
+                            >
+                            3
+                            </a>
+                            <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">
+                            ...
+                            </span>
+                            <a
+                            href="#"
+                            className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
+                            >
+                            8
+                            </a>
+                            <a
+                            href="#"
+                            className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                            >
+                            9
+                            </a>
+                            <a
+                            href="#"
+                            className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                            >
+                            10
+                            </a>
+                            <a
+                            href="#"
+                            className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                            >
+                            <span className="sr-only">Next</span>
+                            <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+                            </a>
+                        </nav>
+                        </div>
+                    </div>
+                    </div>
                 {isLoading?(
                 <div className="w-full h-full bg-white flex justify-center items-center absolute top-0 left-0 z-100">
                     <PulseLoader
-                    color="#36d7b7"
-                    cssOverride={{}}
-                    loading
-                    size={15}
-                    speedMultiplier={1}
+                        color="#E2E8F0"
+                        loading
+                        size={15}
+                        speedMultiplier={1}
                     />
                 </div>):(<div></div>)}
-                
-
             </div>
         </div>
     );
