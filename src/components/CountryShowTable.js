@@ -136,7 +136,7 @@ function CountryShowTable(props) {
             {isShowModal?(
             <div className="fixed flex justify-center items-center w-[100vw] h-[100vh] left-0 top-0 z-50">
                 <div className="absolute w-full h-full left-0 top-0  bg-slate-500/30" onClick={()=>setIsShowModal(false)}></div>
-                <CountryShowModal curShowData={curShowData}></CountryShowModal>
+                <CountryShowModal curShowData={curShowData} setIsShowModal={setIsShowModal}></CountryShowModal>
             </div>):("")}
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg h-full bg-white">
                 <div className="flex items-center justify-between px-4 pt-7 dark:bg-gray-800 z-10">

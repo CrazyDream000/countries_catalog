@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+import {AiOutlineClose} from 'react-icons/ai'
 function CountryShowModal(props) {
     const [curShowData, setCurShowData] = useState();
     useEffect(()=>{
@@ -11,8 +11,8 @@ function CountryShowModal(props) {
     {
         modalContent = (
         <div className='w-full '>
-            <div className='w-full flex justify-end'>
-                Close
+            <div className='w-full flex justify-end cursor-pointer' onClick={()=>props.setIsShowModal(false)}>
+                <AiOutlineClose/>
             </div>
             <div className='flex space-x-4 items-center py-3'>
                 <img className='w-16 h-10  border-[1px]' src={curShowData.flags.png} alt={curShowData.flags.alt}></img>
