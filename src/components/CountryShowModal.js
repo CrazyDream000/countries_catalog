@@ -20,23 +20,23 @@ function CountryShowModal(props) {
             </div>
             <div className='grid grid-cols-4 py-3 border-t-2 border-b-black'>
                 <div className='col-span-2 px-4'>Region:</div>
-                <div className='col-span-2 px-4'>{curShowData.region}</div>
+                <div className='col-span-2 px-4'>{curShowData.region!=undefined?curShowData.region:("")}</div>
             </div>
             <div className='grid grid-cols-4 py-3 border-t-[1px] border-b-gray-400'>
                 <div className='col-span-2 px-4'>Area:</div>
-                <div className='col-span-2 px-4'>{curShowData.area} Km<sup>2</sup> </div>
+                <div className='col-span-2 px-4'>{curShowData.area!=undefined?curShowData.area.toLocaleString():("")} Km<sup>2</sup> </div>
             </div>
             <div className='grid grid-cols-4 py-3 border-t-[1px] border-b-gray-400'>
                 <div className='col-span-2 px-4'>Population:</div>
-                <div className='col-span-2 px-4'>{curShowData.population.toLocaleString()}</div>
+                <div className='col-span-2 px-4'>{curShowData.population!=undefined?curShowData.population.toLocaleString():("")}</div>
             </div>
             <div className='grid grid-cols-4 py-3 border-t-[1px] border-b-gray-400'>
                 <div className='col-span-2 px-4'>TimeZones:</div>
-                <div className='col-span-2 px-4'>{curShowData.timezones[0]}</div>
+                <div className='col-span-2 px-4'>{curShowData.timezones!=undefined?curShowData.timezones[0]:("")}</div>
             </div>
             <div className='grid grid-cols-4 py-3 border-t-[1px] border-b-gray-400'>
                 <div className='col-span-2 px-4'>Capital City:</div>
-                <div className='col-span-2 px-4'>{curShowData.capital.map((item)=>(item + " "))}</div>
+                <div className='col-span-2 px-4'>{curShowData.capital!=undefined?curShowData.capital.map((item)=>(item + " ")):("")}</div>
             </div>
         </div>);
     }
