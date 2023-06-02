@@ -3,6 +3,7 @@ import { PulseLoader } from "react-spinners";
 import axios from 'axios';
 import Fuse from 'fuse.js'
 import Pagination from "./Pagination";
+import CountryShowModal from "./CountryShowModal";
 
 function CountryShowTable(props) {
     const [isLoading, setIsLoading] = useState(false);
@@ -11,8 +12,8 @@ function CountryShowTable(props) {
     const [totalPage, setTotalPage] = useState(1);
     const [filterTxt, setFilterTxt] = useState("");
     const [searchData, setSearchData] = useState("");
-   
-
+    const [isShowModal, setIsShowModal] = useState(false);
+    const [curShowData, setCurShowData] = useState();
     useEffect(() => {
         //initially loading countries data
         getCountriesData();
@@ -39,7 +40,7 @@ function CountryShowTable(props) {
         });
         
         //set up fuse module for search the countries by Name
-        const fuse =  new Fuse(result.data, {minMatchCharLength:0, keys:["name.common"]});
+        const fuse =  new Fuse(result.data, {keys:["name.common"]});
         //diplay all countries data at first
         setCountriesData(result.data);
         setTotalPage(Math.ceil(result.data.length/25));
@@ -56,6 +57,8 @@ function CountryShowTable(props) {
             searchResult = searchData.search(newValue);
         setCountriesData(searchResult)
         setTotalPage(Math.ceil(searchResult.length/25));
+        if(curPage > Math.ceil(searchResult.length/25))
+            setCurPage(Math.ceil(searchResult.length/25)); 
         setFilterTxt(newValue);
         // Do something with the input value...
     };
@@ -76,7 +79,7 @@ function CountryShowTable(props) {
                 countryItem = index;
             else
                 countryItem = index.item;
-
+            
             //get country code
             if(countryItem.idd.suffixes != undefined)
                 countryCode = countryItem.idd.root + countryItem.idd.suffixes[0];
@@ -90,9 +93,9 @@ function CountryShowTable(props) {
 
             //display countries Data on PC
             pcListContent = [...pcListContent, (
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600  cursor-pointer">
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600  cursor-pointer" onClick={()=>{setCurShowData(countryItem);setIsShowModal(true)}}>
                     <td className="pl-4">
-                        <img className="w-10 h-10 rounded-full" src={countryItem.flags.png} alt={countryItem.flags.alt}/>
+                        <img className=" border-[1px] w-10 h-10 rounded-full" src={countryItem.flags.png} alt={countryItem.flags.alt}/>
                     </td>
                     <td className="flex flex-col justify-center whitespace-nowrap px-3 py-4 text-gray-900 dark:text-white">
                         <div className="text-base font-semibold">{countryItem.name.common}</div>
@@ -111,10 +114,10 @@ function CountryShowTable(props) {
             )];
             //display countries Data on Mobile
             mobileListContent =[...mobileListContent, (
-                <li className="pb-3 sm:pb-4 transition delay-[40] hover:bg-gray-50 cursor-pointer">
+                <li className="pb-3 sm:pb-4 transition delay-[40] hover:bg-gray-50 cursor-pointer"  onClick={()=>{setCurShowData(countryItem);setIsShowModal(true)}}>
                     <div className="flex items-center space-x-6">
                         <div className="flex-shrink-0">
-                            <img className="w-10 h-10 rounded-full" src={countryItem.flags.png} alt={countryItem.flags.alt}/>
+                            <img className=" border-[1px] w-10 h-10 rounded-full" src={countryItem.flags.png} alt={countryItem.flags.alt}/>
                         </div>
                         <div className="flex-1 min-w-0">
                             <div className="text-base font-semibold">{countryItem.name.common}</div>
@@ -130,8 +133,12 @@ function CountryShowTable(props) {
     }
     return (
         <div className="p-0 md:p-10 h-full">
+            {isShowModal?(
+            <div className="fixed flex justify-center items-center w-[100vw] h-[100vh] left-0 top-0 z-50">
+                <div className="absolute w-full h-full left-0 top-0  bg-slate-500/30" onClick={()=>setIsShowModal(false)}></div>
+                <CountryShowModal curShowData={curShowData}></CountryShowModal>
+            </div>):("")}
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg h-full bg-white">
-               
                 <div className="flex items-center justify-between px-4 pt-7 dark:bg-gray-800 z-10">
                     <div className="hidden md:block md:text-xl">Country Catalog</div>
                     <div className="relative w-full md:w-80 flex">
